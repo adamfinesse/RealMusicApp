@@ -1,4 +1,4 @@
-package com.example.realmusicapp;
+package com.example.spotifyplaylist;
 
 import org.junit.Test;
 
