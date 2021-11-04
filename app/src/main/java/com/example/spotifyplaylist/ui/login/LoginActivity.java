@@ -1,5 +1,7 @@
 package com.example.spotifyplaylist.ui.login;
 
+//import static com.spotify.sdk.android.auth.LoginActivity.REQUEST_CODE;
+
 import android.app.Activity;
 
 import androidx.lifecycle.Observer;
@@ -43,8 +45,9 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
     private static final String CLIENT_ID = "e30929e731664b3f86b922d87115dc59";
-    private static final String REDIRECT_URI = "http://localhost:8888/callback/";
+    private static final String REDIRECT_URI = "http://localhost:8888/callback";
     private static final int REQUEST_CODE = 1337;
+    //private int REQUEST_CODE;
     String token = "";
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,7 +63,9 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
-        //final String CLIENT_ID = binding.username.toString();
+//        final String CLIENT_ID = binding.username.toString();
+//        final String REDIRECT_URI = binding.password.toString();
+
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
             public void onChanged(@Nullable LoginFormState loginFormState) {
@@ -88,22 +93,26 @@ public class LoginActivity extends AppCompatActivity {
                     showLoginFailed(loginResult.getError());
                 }
                 if (loginResult.getSuccess() != null) {// login was successful
-                    updateUiWithUser(loginResult.getSuccess());
+                    //updateUiWithUser(loginResult.getSuccess());
                     //Intent intent = new Intent(getApplicationContext(),LoginActivity.class); example of intent
-
-                        final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
-                                 .setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming"})
-                                 .setShowDialog(true)
-                                 .build();
+                    //REQUEST_CODE = Integer.parseInt(binding.editTextNumber.getText().toString());
+                    System.out.println(CLIENT_ID);
+                    System.out.println(REDIRECT_URI);
+                    System.out.println(REQUEST_CODE);
+                    final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
+                            .setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming"})
+                            //.setShowDialog(true)
+                            .build();
                         //request.toUri(); testing random code
-                        AuthorizationClient.openLoginActivity(LoginActivity.this, REQUEST_CODE, request); // This should try to authenticate with the 3 params, and by default if spotify isnt on the device it goes to online sign in.
-                       
-                        // AuthorizationClient.getResponse(Activity.RESULT_OK, AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request)).getAccessToken(); // need to figure out what itent is/does
-                        onActivityResult(REQUEST_CODE,Activity.RESULT_OK,AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request));
+                    AuthorizationClient.openLoginActivity(LoginActivity.this, REQUEST_CODE, request); // This should try to authenticate with the 3 params, and by default if spotify isnt on the device it goes to web sign in.
+
+                        //AuthorizationClient.getResponse(Activity.RESULT_OK, AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request)).getAccessToken(); // need to figure out what itent is/does
+                    onActivityResult(REQUEST_CODE,Activity.RESULT_OK,AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request));
                         //change code inside onActivityResult to grab playlists.
                 //useful links: https://developer.spotify.com/documentation/android/guides/android-authentication/ , https://github.com/spotify/android-auth/blob/master/auth-lib/src/main/java/com/spotify/sdk/android/auth/AuthorizationClient.java , https://developer.spotify.com/documentation/android/quick-start/ ( kinda trash ) , https://spotify.github.io/android-sdk/auth-lib/docs/com/spotify/sdk/android/auth/AuthorizationClient.html
                 }
-                setResult(Activity.RESULT_OK);// maybe change to LoginActivity.this but probably fine
+                //onActivityResult(REQUEST_CODE,Activity.RESULT_OK,AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request));
+                //setResult(Activity.RESULT_OK);// maybe change to LoginActivity.this but probably fine
 
                 //Complete and destroy login activity once successful
                 finish();
@@ -160,11 +169,11 @@ public class LoginActivity extends AppCompatActivity {
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // We will start writing our code here.
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        // We will start writing our code here.
+//    }
 
     private void connected() {
         // Then we will write some more code here.
@@ -178,28 +187,33 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-
         // Check if result comes from the correct activity
         if (requestCode == REQUEST_CODE) {
             AuthorizationResponse response = AuthorizationClient.getResponse(resultCode, intent);
-
+            System.out.println(response.getType().toString());
             switch (response.getType()) {
                 // Response was successful and contains auth token
                 case TOKEN:
                     // Handle successful response
                     System.out.println(response.getAccessToken());
                     System.out.println("inside token");
+
                     // add part where we get all their playlists here? and add option to specifically set playlist uri
                     break;
 
                 // Auth flow returned an error
                 case ERROR:
                     // Handle error response
+                    System.out.println("inside error");
                     break;
 
                 // Most likely auth flow was cancelled
                 default:
                     // Handle other cases
+                    // for some reason it currently goes here with no access token I think
+                    System.out.println("inside default");
+                    System.out.println(response.getAccessToken());
+
             }
         }
     }

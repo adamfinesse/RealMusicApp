@@ -56,8 +56,9 @@ public class LoginViewModel extends ViewModel {
         if (username == null) {
             return false;
         }
-        if (username.contains("@")) {
-            return Patterns.EMAIL_ADDRESS.matcher(username).matches();
+        if (username.length()==32) {
+            //return Patterns.EMAIL_ADDRESS.matcher(username).matches();
+            return true;
         } else {
             return !username.trim().isEmpty();
         }
