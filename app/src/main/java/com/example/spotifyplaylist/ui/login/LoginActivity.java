@@ -93,11 +93,11 @@ public class LoginActivity extends AppCompatActivity {
 
                         final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
                                  .setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming"})
-                                 .setShowDialog(true)
+                                 //.setShowDialog(true)
                                  .build();
                         //request.toUri(); testing random code
                         AuthorizationClient.openLoginActivity(LoginActivity.this, REQUEST_CODE, request); // This should try to authenticate with the 3 params, and by default if spotify isnt on the device it goes to online sign in.
-                       
+
                         // AuthorizationClient.getResponse(Activity.RESULT_OK, AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request)).getAccessToken(); // need to figure out what itent is/does
                         onActivityResult(REQUEST_CODE,Activity.RESULT_OK,AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request));
                         //change code inside onActivityResult to grab playlists.
