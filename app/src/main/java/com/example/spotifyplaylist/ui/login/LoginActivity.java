@@ -26,16 +26,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.spotifyplaylist.R;
-import com.example.spotifyplaylist.ui.login.LoginViewModel;
-import com.example.spotifyplaylist.ui.login.LoginViewModelFactory;
 import com.example.spotifyplaylist.databinding.ActivityLoginBinding;
-
 import com.spotify.sdk.android.auth.AuthorizationRequest;
+import com.spotify.sdk.android.auth.app.SpotifyAuthHandler;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 //import com.spotify.android.appremote.api.Connector;
-//import com.spotify.android.appremote.api.SpotifyAppRemote;
-//
+import com.spotify.android.appremote.api.SpotifyAppRemote;
 //import com.spotify.protocol.client.Subscription;
 //import com.spotify.protocol.types.PlayerState;
 //import com.spotify.protocol.types.Track;
@@ -47,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "e30929e731664b3f86b922d87115dc59";
     private static final String REDIRECT_URI = "http://localhost:8888/callback";
     private static final int REQUEST_CODE = 1337;
+    private Intent a;
     //private int REQUEST_CODE;
     String token = "";
     @Override
@@ -100,22 +98,25 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println(REDIRECT_URI);
                     System.out.println(REQUEST_CODE);
                     final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
-                            .setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming"})
+                            .setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming","app-remote-control"})
                             //.setShowDialog(true)
                             .build();
                         //request.toUri(); testing random code
                     AuthorizationClient.openLoginActivity(LoginActivity.this, REQUEST_CODE, request); // This should try to authenticate with the 3 params, and by default if spotify isnt on the device it goes to web sign in.
-
-                        //AuthorizationClient.getResponse(Activity.RESULT_OK, AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request)).getAccessToken(); // need to figure out what itent is/does
-                    onActivityResult(REQUEST_CODE,Activity.RESULT_OK,AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request));
+                    a=AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request);//.getExtras() might be useful for response idk
+                    // need to figure out what itent is/does
+                    //a = AuthorizationClient.
                         //change code inside onActivityResult to grab playlists.
                 //useful links: https://developer.spotify.com/documentation/android/guides/android-authentication/ , https://github.com/spotify/android-auth/blob/master/auth-lib/src/main/java/com/spotify/sdk/android/auth/AuthorizationClient.java , https://developer.spotify.com/documentation/android/quick-start/ ( kinda trash ) , https://spotify.github.io/android-sdk/auth-lib/docs/com/spotify/sdk/android/auth/AuthorizationClient.html
+                //example response url with access token from spotify: http://localhost:8888/callback#access_token=BQDhDe3JdIbku-Sh28C_PUhNTm5WDhuyH32zU2-o_6txOeTlQl3r8DHxo6QwDztBJcACTqlu0EouougSrCkxrFBtNLOPsXk1slRVO_7RwNnoRrmthJim5cvAhCiYGPqsmF5Q7WsvZnAZo-gnZP3ZjN_-NzqritoEnZjfUzg6_4GR67B7B-NbMI_c4zjtc_ctbq0&token_type=Bearer&expires_in=3600
+                //
                 }
                 //onActivityResult(REQUEST_CODE,Activity.RESULT_OK,AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request));
-                //setResult(Activity.RESULT_OK);// maybe change to LoginActivity.this but probably fine
-
+                setResult(Activity.RESULT_OK);// maybe change to LoginActivity.this but probably fine
+                //onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
                 //Complete and destroy login activity once successful
                 finish();
+                onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
             }
         });
 
@@ -198,6 +199,9 @@ public class LoginActivity extends AppCompatActivity {
                     System.out.println(response.getAccessToken());
                     System.out.println("inside token");
 
+
+                   // response.
+                    //write requests here?
                     // add part where we get all their playlists here? and add option to specifically set playlist uri
                     break;
 
@@ -213,6 +217,10 @@ public class LoginActivity extends AppCompatActivity {
                     // for some reason it currently goes here with no access token I think
                     System.out.println("inside default");
                     System.out.println(response.getAccessToken());
+                    // the response is saved in a bundle called EXTRA with the key response??
+                    //Bundle bundle = getIntent().getExtras();
+                    //Bundle d =
+                    //System.out.println(.get("response").toString());
 
             }
         }
