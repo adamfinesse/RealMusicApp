@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpotifyPlaylist">
         <activity
+            android:name=".HelpActivity2"
+            android:exported="false" />
+        <activity
             android:name=".PlayViewActivity"
             android:exported="false" />
         <activity
