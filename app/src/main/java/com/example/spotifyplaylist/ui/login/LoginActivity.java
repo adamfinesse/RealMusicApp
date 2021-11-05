@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -96,9 +97,10 @@ public class LoginActivity extends AppCompatActivity {
                     //updateUiWithUser(loginResult.getSuccess());
                     //Intent intent = new Intent(getApplicationContext(),LoginActivity.class); example of intent
                     //REQUEST_CODE = Integer.parseInt(binding.editTextNumber.getText().toString());
-                    System.out.println(CLIENT_ID);
-                    System.out.println(REDIRECT_URI);
-                    System.out.println(REQUEST_CODE);
+//                    System.out.println(CLIENT_ID);
+//                    System.out.println(REDIRECT_URI);
+//                    System.out.println(REQUEST_CODE);
+                    Log.d("random","yamuv");
                     final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
                             .setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming","app-remote-control"})
                             //.setShowDialog(true)
@@ -106,6 +108,16 @@ public class LoginActivity extends AppCompatActivity {
                         //request.toUri(); testing random code
                     AuthorizationClient.openLoginActivity(LoginActivity.this, REQUEST_CODE, request); // This should try to authenticate with the 3 params, and by default if spotify isnt on the device it goes to web sign in.
                     a=AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request);//.getExtras() might be useful for response idk
+
+                    Bundle t2 = new Bundle();
+                    t2.get("response");
+                    for(String a : t2.keySet()){
+                        Log.d("keys",a);
+                    }
+                    //AuthorizationResponse ad = new AuthorizationResponse(t2.keySet());
+                    //String test2 = ad.getAccessToken();
+                    //String test2 = AuthorizationResponse.fromUri(request.toUri()).getAccessToken();
+                    //Log.d("requestinfo",test2);
                     // need to figure out what itent is/does
                     //a = AuthorizationClient.
                         //change code inside onActivityResult to grab playlists.
@@ -117,8 +129,8 @@ public class LoginActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK);
                 //onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
                 //Complete and destroy login activity once successful
-                onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
                 finish();
+                onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
             }
         });
 
@@ -152,13 +164,16 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        //Intent success = new Intent(this, SuccessActivity.class);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
+
+                //startActivity(success);
+                //Log.d("logged in","entered logged in page");
             }
         });
     }
@@ -203,7 +218,7 @@ public class LoginActivity extends AppCompatActivity {
         // Check if result comes from the correct activity
         if (requestCode == REQUEST_CODE) {
             AuthorizationResponse response = AuthorizationClient.getResponse(resultCode, intent);
-            System.out.println(response.getType().toString());
+            System.out.println(response.getType().toString() +"ya");
             switch (response.getType()) {
                 // Response was successful and contains auth token
                 case TOKEN:
@@ -222,13 +237,16 @@ public class LoginActivity extends AppCompatActivity {
                     // Handle error response
                     System.out.println("inside error");
                     break;
-
                 // Most likely auth flow was cancelled
                 default:
                     // Handle other cases
                     // for some reason it currently goes here with no access token I think
                     System.out.println("inside default");
                     System.out.println(response.getAccessToken());
+                    Bundle t2 = new Bundle();
+                    t2.get("response");
+                    String test2 = response.getAccessToken();
+                    Log.d("requestinfo",test2);
                     // the response is saved in a bundle called EXTRA with the key response??
                     //Bundle bundle = getIntent().getExtras();
                     //Bundle d =

@@ -55,8 +55,8 @@
         android:background="#FFFFFF"
         android:backgroundTint="#FFFFFF"
         android:enabled="false"
-        android:onClick="loggedIn"
         android:text="@string/action_sign_in"
+        android:visibility="invisible"
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,5 +146,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loading"
         app:layout_constraintVertical_bias="0.815" />
+
+    <Button
+        android:id="@+id/signIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/SpotifyBlack"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="loggedIn"
+        android:text="Sign In to Spotify"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/loading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
