@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/SpotifyGreen"
+    android:background="@color/SpotifyBlack"
     tools:context=".HelpActivity">
 
     <TextView
@@ -15,7 +15,7 @@
         android:text="Help Menu"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/SpotifyBlack"
+        android:textColor="@color/SpotifyGreen"
         android:textFontWeight="20"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -33,7 +33,7 @@
         android:text="How to use: "
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/SpotifyBlack"
+        android:textColor="@color/SpotifyGreen"
         android:textFontWeight="20"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -52,7 +52,7 @@ the playlists of the user will appear, and everyone in the group can send their 
 will be combined into a new playlist under the user's account, and any duplicates will simply move the duplicated tracks position."
         android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/SpotifyBlack"
+        android:textColor="@color/SpotifyGreen"
         android:textFontWeight="20"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
