@@ -13,11 +13,12 @@ public class PlayViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_view);
+        setTitle("Playlist View");
     }
     public void helpMenu2(View v){
         //Button a = (Button)v;
-        Intent i = new Intent(this, HelpActivity2.class);
+        Intent i = new Intent(this, PlaylistViewHelp.class);
         startActivity(i);
-        Log.d("helpmenu2","help menu 2 button clicked");
+        Log.d("playlistViewHelp","playlistView help button clicked");
     }
 }

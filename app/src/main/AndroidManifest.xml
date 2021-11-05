@@ -16,7 +16,7 @@
             android:name=".CombineFromUriActivity"
             android:exported="true" />
         <activity
-            android:name=".HelpActivity2"
+            android:name=".PlaylistViewHelp"
             android:exported="false" />
         <activity
             android:name=".PlayViewActivity"
