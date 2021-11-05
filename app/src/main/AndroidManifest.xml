@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.spotifyplaylist">
+    package="com.example.spotifyplaylist" >
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SpotifyPlaylist">
+        android:theme="@style/Theme.SpotifyPlaylist" >
+        <activity
+            android:name=".UriHelpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CombineFromUriActivity"
+            android:exported="true" />
         <activity
             android:name=".SuccessActivity"
             android:exported="true" />
@@ -19,7 +25,7 @@
             android:name=".ui.login.LoginActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
