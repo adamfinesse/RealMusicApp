@@ -21,6 +21,11 @@ public class SuccessActivity extends AppCompatActivity {
         startActivity(i);
         Log.d("helpmenu","help menu button clicked");
     }
+    public void combineFromUriMenu(View v){
+        Intent i = new Intent(this,CombineFromUriActivity.class);
+        startActivity(i);
+        Log.d("UriMenu","Combine From Uri Menu CLicked");
+    }
     public void playView(View v){
         //Button a = (Button)v;
         Intent i = new Intent(this, PlayViewActivity.class);
