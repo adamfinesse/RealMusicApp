@@ -16,6 +16,9 @@
             android:name=".CombineFromUriActivity"
             android:exported="true" />
         <activity
+            android:name=".PlayViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".SuccessActivity"
             android:exported="true" />
         <activity
