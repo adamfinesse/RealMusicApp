@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -25,7 +26,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.spotifyplaylist.HelpActivity;
 import com.example.spotifyplaylist.R;
+import com.example.spotifyplaylist.SuccessActivity;
 import com.example.spotifyplaylist.databinding.ActivityLoginBinding;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.app.SpotifyAuthHandler;
@@ -56,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
-
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
@@ -112,11 +114,11 @@ public class LoginActivity extends AppCompatActivity {
                 //
                 }
                 //onActivityResult(REQUEST_CODE,Activity.RESULT_OK,AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request));
-                setResult(Activity.RESULT_OK);// maybe change to LoginActivity.this but probably fine
+                setResult(Activity.RESULT_OK);
                 //onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
                 //Complete and destroy login activity once successful
-                finish();
                 onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
+                finish();
             }
         });
 
@@ -160,7 +162,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void helpMenu(View v){
+        //Button a = (Button)v;
+        Intent i = new Intent(this, HelpActivity.class);
+        startActivity(i);
+        Log.d("helpmenu","help menu button clicked");
+    }
+    public void loggedIn(View v){
+        Intent i = new Intent(this, SuccessActivity.class);
+        startActivity(i);
+        Log.d("logged in","entered logged in page");
+    }
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
