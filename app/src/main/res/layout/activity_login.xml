@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#196535"
+    android:onClick="loginSpotify"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -60,9 +61,10 @@
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.188" />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -99,25 +101,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/spotify_logo_rgb_green" />
-<!--    <EditText-->
-<!--        android:id="@+id/editTextNumber"-->
-<!--        android:layout_width="380dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="60dp"-->
-<!--        android:layout_marginBottom="444dp"-->
-<!--        android:autofillHints="@string/prompt_requestcode"-->
-<!--        android:background="#FFFFFF"-->
-<!--        android:backgroundTint="#FFFFFF"-->
-<!--        android:ems="10"-->
-<!--        android:hint="@string/prompt_requestcode"-->
-<!--        android:inputType="number"-->
-<!--        android:minHeight="48dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.483"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/password"-->
-<!--        app:layout_constraintVertical_bias="0.875" />-->
+    <!--    <EditText-->
+    <!--        android:id="@+id/editTextNumber"-->
+    <!--        android:layout_width="380dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="60dp"-->
+    <!--        android:layout_marginBottom="444dp"-->
+    <!--        android:autofillHints="@string/prompt_requestcode"-->
+    <!--        android:background="#FFFFFF"-->
+    <!--        android:backgroundTint="#FFFFFF"-->
+    <!--        android:ems="10"-->
+    <!--        android:hint="@string/prompt_requestcode"-->
+    <!--        android:inputType="number"-->
+    <!--        android:minHeight="48dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.483"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/password"-->
+    <!--        app:layout_constraintVertical_bias="0.875" />-->
     <EditText
         android:id="@+id/editTextNumber"
         android:layout_width="0dp"
@@ -142,10 +144,10 @@
         android:text="Help"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loading"
-        app:layout_constraintVertical_bias="0.815" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 
     <Button
         android:id="@+id/signIn"
@@ -154,11 +156,26 @@
         android:background="@color/SpotifyBlack"
         android:backgroundTint="#FFFFFF"
         android:onClick="loggedIn"
-        android:text="Sign In to Spotify"
+        android:text="Next Page"
+        android:visibility="visible"
         app:iconTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/loading"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
+        app:layout_constraintVertical_bias="0.366" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="loginSpotify"
+        android:text="Sign in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.477" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

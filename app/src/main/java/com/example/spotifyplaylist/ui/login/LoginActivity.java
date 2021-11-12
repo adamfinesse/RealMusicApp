@@ -31,6 +31,8 @@ import com.example.spotifyplaylist.HelpActivity;
 import com.example.spotifyplaylist.R;
 import com.example.spotifyplaylist.SuccessActivity;
 import com.example.spotifyplaylist.databinding.ActivityLoginBinding;
+import com.spotify.android.appremote.api.ConnectionParams;
+import com.spotify.android.appremote.api.Connector;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.app.SpotifyAuthHandler;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
@@ -42,7 +44,7 @@ import com.spotify.android.appremote.api.SpotifyAppRemote;
 //import com.spotify.protocol.types.Track;
 
 public class LoginActivity extends AppCompatActivity {
-
+    private SpotifyAppRemote mSpotifyAppRemote;
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
     private static final String CLIENT_ID = "e30929e731664b3f86b922d87115dc59";
@@ -101,19 +103,8 @@ public class LoginActivity extends AppCompatActivity {
 //                    System.out.println(REDIRECT_URI);
 //                    System.out.println(REQUEST_CODE);
                     Log.d("random","yamuv");
-                    final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
-                            .setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming","app-remote-control"})
-                            //.setShowDialog(true)
-                            .build();
-                        //request.toUri(); testing random code
-                    AuthorizationClient.openLoginActivity(LoginActivity.this, REQUEST_CODE, request); // This should try to authenticate with the 3 params, and by default if spotify isnt on the device it goes to web sign in.
-                    a=AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request);//.getExtras() might be useful for response idk
+                    //.getExtras() might be useful for response idk
 
-                    Bundle t2 = new Bundle();
-                    t2.get("response");
-                    for(String a : t2.keySet()){
-                        Log.d("keys",a);
-                    }
                     //AuthorizationResponse ad = new AuthorizationResponse(t2.keySet());
                     //String test2 = ad.getAccessToken();
                     //String test2 = AuthorizationResponse.fromUri(request.toUri()).getAccessToken();
@@ -130,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                 //onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
                 //Complete and destroy login activity once successful
                 finish();
-                onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
+
             }
         });
 
@@ -185,8 +176,24 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void loggedIn(View v){
         Intent i = new Intent(this, SuccessActivity.class);
+
+        //request.toUri(); testing random code
+        //AuthorizationClient.createLoginActivityIntent(this,request); make a login request from a fragment?
+        //
+
         startActivity(i);
         Log.d("logged in","entered logged in page");
+        onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
+    }
+    public void loginSpotify(View v){
+        final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
+                .setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming","app-remote-control"})
+                //.setShowDialog(true)
+                .build();
+        AuthorizationClient.openLoginActivity(LoginActivity.this, REQUEST_CODE, request); // This should try to authenticate with the 3 params, and by default if spotify isnt on the device it goes to web sign in.
+        a=AuthorizationClient.createLoginActivityIntent(LoginActivity.this,request);
+        //i.putExtra("response",AuthorizationClient.getResponse(Activity.RESULT_OK,i));
+        onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
     }
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
@@ -223,9 +230,41 @@ public class LoginActivity extends AppCompatActivity {
                 // Response was successful and contains auth token
                 case TOKEN:
                     // Handle successful response
+
                     System.out.println(response.getAccessToken());
                     System.out.println("inside token");
+                    if(response.getAccessToken()== null){
+                        Toast.makeText(this,"wait 5 seconds then click the button again.",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    else if(response.getAccessToken()!= null){
+                        ConnectionParams test = new ConnectionParams.Builder(CLIENT_ID)
+                                .setRedirectUri(REDIRECT_URI)
+                                .showAuthView(true)
+                                .build();
+                        SpotifyAppRemote.connect(this, test,
+                                new Connector.ConnectionListener() {
 
+
+                                    public void onConnected(SpotifyAppRemote spotifyAppRemote) {
+                                        mSpotifyAppRemote = spotifyAppRemote;
+                                        Log.d("ConnectedSuccess", "Connected! Yay!");
+
+                                        // Now you can start interacting with App Remote
+                                        connected();
+                                    }
+
+
+                                    public void onFailure(Throwable throwable) {
+                                        Log.e("MainActivity", throwable.getMessage(), throwable);
+
+                                        // Something went wrong when attempting to connect! Handle errors here
+                                    }
+                                });
+                    }
+                    else{
+                        Toast.makeText(this,"wait 5 seconds then click the button again.",Toast.LENGTH_LONG).show();
+                    }
 
                    // response.
                     //write requests here?
@@ -243,10 +282,10 @@ public class LoginActivity extends AppCompatActivity {
                     // for some reason it currently goes here with no access token I think
                     System.out.println("inside default");
                     System.out.println(response.getAccessToken());
-                    Bundle t2 = new Bundle();
-                    t2.get("response");
-                    String test2 = response.getAccessToken();
-                    Log.d("requestinfo",test2);
+//                    Bundle t2 = new Bundle();
+//                    t2.get("response");
+//                    String test2 = response.getAccessToken();
+//                    Log.d("requestinfo",test2);
                     // the response is saved in a bundle called EXTRA with the key response??
                     //Bundle bundle = getIntent().getExtras();
                     //Bundle d =
