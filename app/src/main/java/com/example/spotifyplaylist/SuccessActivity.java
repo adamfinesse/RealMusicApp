@@ -1,5 +1,7 @@
 package com.example.spotifyplaylist;
 
+import static com.spotify.sdk.android.auth.AccountsQueryParameters.CLIENT_ID;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -17,6 +19,11 @@ import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
 
 public class SuccessActivity extends AppCompatActivity {
+    private static final String CLIENT_ID = "e30929e731664b3f86b922d87115dc59";
+    private static final String REDIRECT_URI = "http://localhost:8888/callback";
+    private static final int REQUEST_CODE = 1337;
+    private Intent a;
+    private SpotifyAppRemote mSpotifyAppRemote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +50,57 @@ public class SuccessActivity extends AppCompatActivity {
         Log.d("playView","view playlists button clicked");
     }
     public void loginSpotify(View v){
-        onStart();
-  //      final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
+        //onStart();
+//        final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
 //                .setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming","app-remote-control"})
 //                //.setShowDialog(true)
 //                .build();
 //        AuthorizationClient.openLoginActivity(SuccessActivity.this, REQUEST_CODE, request); // This should try to authenticate with the 3 params, and by default if spotify isnt on the device it goes to web sign in.
-//        a=AuthorizationClient.createLoginActivityIntent(SuccessActivity.this,request);
-//        //i.putExtra("response",AuthorizationClient.getResponse(Activity.RESULT_OK,i));
-//        onActivityResult(REQUEST_CODE, Activity.RESULT_OK,a);
+        //a=AuthorizationClient.createLoginActivityIntent(SuccessActivity.this,request);
+        //i.putExtra("response",AuthorizationClient.getResponse(Activity.RESULT_OK,i));
+        //onActivityResult(REQUEST_CODE, Activity.RESULT_OK,a);
 
 
 }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        ConnectionParams connectionParams =
+//                new ConnectionParams.Builder(CLIENT_ID)
+//                        .setRedirectUri(REDIRECT_URI)
+//                        .showAuthView(true)
+//                        .build();
+//
+//        SpotifyAppRemote.connect(this, connectionParams,
+//                new Connector.ConnectionListener() {
+//
+//                    public void onConnected(SpotifyAppRemote spotifyAppRemote) {
+//                        mSpotifyAppRemote = spotifyAppRemote;
+//                        Log.d("MainActivity", "Connected! Yay!");
+//
+//                        // Now you can start interacting with App Remote
+//                        connected();
+//
+//                    }
+//
+//                    public void onFailure(Throwable throwable) {
+//                        Log.e("MyActivity", throwable.getMessage(), throwable);
+//
+//                        // Something went wrong when attempting to connect! Handle errors here
+//                    }
+//                });
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        SpotifyAppRemote.disconnect(mSpotifyAppRemote);
+//    }
+//
+//    private void connected() {
+//        // Play a playlist
+//        //Library
+//        mSpotifyAppRemote.getUserApi().getLibraryState("spotify:playlist:0X595F8fFxowklYH3fJSZ7?si=7e90dc56be564ad4");
+//        mSpotifyAppRemote.getPlayerApi();
+//    }
 }
