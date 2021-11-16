@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name = "SpotifyGreen">#FF1DB954</string>
+    <string name = "SpotifyBlack">#FF191414</string>
+
+</resources>

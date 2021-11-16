@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.spotifyplaylist" >
+    package="com.example.spotifyplaylist">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -8,7 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SpotifyPlaylist" >
+        android:theme="@style/Theme.SpotifyPlaylist">
+        <activity
+            android:name=".SuccessActivity"
+            android:exported="true"/>
         <activity
             android:name=".UriHelpActivity"
             android:exported="true" />
@@ -22,16 +27,17 @@
             android:name=".PlayViewActivity"
             android:exported="false" />
         <activity
-            android:name=".SuccessActivity"
-            android:exported="true" />
+            android:name=".ui.login.LoginActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:exported="true"
+            android:label="@string/app_name" />
         <activity
             android:name=".HelpActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:exported="true"
-            android:label="@string/app_name" >
+            android:name=".SplashActivity"
+            android:launchMode="singleInstance"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,8 +50,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="http://localhost:8888/callback"
-                    android:scheme="8888" />
+                    android:host="callback"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
     </application>

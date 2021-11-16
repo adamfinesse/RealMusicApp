@@ -183,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
 
         startActivity(i);
         Log.d("logged in","entered logged in page");
-        onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
+        //onActivityResult(REQUEST_CODE,Activity.RESULT_OK,a);
     }
     public void loginSpotify(View v){
         final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
@@ -219,79 +219,79 @@ public class LoginActivity extends AppCompatActivity {
         super.onStop();
         // Aaand we will finish off here.
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-        // Check if result comes from the correct activity
-        if (requestCode == REQUEST_CODE) {
-            AuthorizationResponse response = AuthorizationClient.getResponse(resultCode, intent);
-            System.out.println(response.getType().toString() +"ya");
-            switch (response.getType()) {
-                // Response was successful and contains auth token
-                case TOKEN:
-                    // Handle successful response
-
-                    System.out.println(response.getAccessToken());
-                    System.out.println("inside token");
-                    if(response.getAccessToken()== null){
-                        Toast.makeText(this,"wait 5 seconds then click the button again.",Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    else if(response.getAccessToken()!= null){
-                        ConnectionParams test = new ConnectionParams.Builder(CLIENT_ID)
-                                .setRedirectUri(REDIRECT_URI)
-                                .showAuthView(true)
-                                .build();
-                        SpotifyAppRemote.connect(this, test,
-                                new Connector.ConnectionListener() {
-
-
-                                    public void onConnected(SpotifyAppRemote spotifyAppRemote) {
-                                        mSpotifyAppRemote = spotifyAppRemote;
-                                        Log.d("ConnectedSuccess", "Connected! Yay!");
-
-                                        // Now you can start interacting with App Remote
-                                        connected();
-                                    }
-
-
-                                    public void onFailure(Throwable throwable) {
-                                        Log.e("MainActivity", throwable.getMessage(), throwable);
-
-                                        // Something went wrong when attempting to connect! Handle errors here
-                                    }
-                                });
-                    }
-                    else{
-                        Toast.makeText(this,"wait 5 seconds then click the button again.",Toast.LENGTH_LONG).show();
-                    }
-
-                   // response.
-                    //write requests here?
-                    // add part where we get all their playlists here? and add option to specifically set playlist uri
-                    break;
-
-                // Auth flow returned an error
-                case ERROR:
-                    // Handle error response
-                    System.out.println("inside error");
-                    break;
-                // Most likely auth flow was cancelled
-                default:
-                    // Handle other cases
-                    // for some reason it currently goes here with no access token I think
-                    System.out.println("inside default");
-                    System.out.println(response.getAccessToken());
-//                    Bundle t2 = new Bundle();
-//                    t2.get("response");
-//                    String test2 = response.getAccessToken();
-//                    Log.d("requestinfo",test2);
-                    // the response is saved in a bundle called EXTRA with the key response??
-                    //Bundle bundle = getIntent().getExtras();
-                    //Bundle d =
-                    //System.out.println(.get("response").toString());
-
-            }
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+//        super.onActivityResult(requestCode, resultCode, intent);
+//        // Check if result comes from the correct activity
+//        if (requestCode == REQUEST_CODE) {
+//            AuthorizationResponse response = AuthorizationClient.getResponse(resultCode, intent);
+//            System.out.println(response.getType().toString() +"ya");
+//            switch (response.getType()) {
+//                // Response was successful and contains auth token
+//                case TOKEN:
+//                    // Handle successful response
+//
+//                    System.out.println(response.getAccessToken());
+//                    System.out.println("inside token");
+//                    if(response.getAccessToken()== null){
+//                        Toast.makeText(this,"wait 5 seconds then click the button again.",Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+//                    else if(response.getAccessToken()!= null){
+//                        ConnectionParams test = new ConnectionParams.Builder(CLIENT_ID)
+//                                .setRedirectUri(REDIRECT_URI)
+//                                .showAuthView(true)
+//                                .build();
+//                        SpotifyAppRemote.connect(this, test,
+//                                new Connector.ConnectionListener() {
+//
+//
+//                                    public void onConnected(SpotifyAppRemote spotifyAppRemote) {
+//                                        mSpotifyAppRemote = spotifyAppRemote;
+//                                        Log.d("ConnectedSuccess", "Connected! Yay!");
+//
+//                                        // Now you can start interacting with App Remote
+//                                        connected();
+//                                    }
+//
+//
+//                                    public void onFailure(Throwable throwable) {
+//                                        Log.e("MainActivity", throwable.getMessage(), throwable);
+//
+//                                        // Something went wrong when attempting to connect! Handle errors here
+//                                    }
+//                                });
+//                    }
+//                    else{
+//                        Toast.makeText(this,"wait 5 seconds then click the button again.",Toast.LENGTH_LONG).show();
+//                    }
+//
+//                   // response.
+//                    //write requests here?
+//                    // add part where we get all their playlists here? and add option to specifically set playlist uri
+//                    break;
+//
+//                // Auth flow returned an error
+//                case ERROR:
+//                    // Handle error response
+//                    System.out.println("inside error");
+//                    break;
+//                // Most likely auth flow was cancelled
+//                default:
+//                    // Handle other cases
+//                    // for some reason it currently goes here with no access token I think
+//                    System.out.println("inside default");
+//                    System.out.println(response.getAccessToken());
+////                    Bundle t2 = new Bundle();
+////                    t2.get("response");
+////                    String test2 = response.getAccessToken();
+////                    Log.d("requestinfo",test2);
+//                    // the response is saved in a bundle called EXTRA with the key response??
+//                    //Bundle bundle = getIntent().getExtras();
+//                    //Bundle d =
+//                    //System.out.println(.get("response").toString());
+//
+//            }
+//        }
+//    }
 }
