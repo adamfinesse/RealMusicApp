@@ -24,15 +24,15 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.397" />
+        app:layout_constraintVertical_bias="0.274" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="178dp"
-        android:layout_height="53dp"
+        android:layout_width="280dp"
+        android:layout_height="59dp"
         android:layout_marginTop="49dp"
         android:layout_marginBottom="402dp"
-        android:text="How to use: "
+        android:text="How to use View Playlists Function: "
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/SpotifyGreen"
@@ -41,19 +41,17 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView1"
-        app:layout_constraintVertical_bias="0.848" />
+        app:layout_constraintVertical_bias="0.561" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="292dp"
         android:layout_height="402dp"
-        android:text="This app is intended to help groups of people make playlists together through spotify.
-When the app is started, the user is prompted to enter their spotify credentials or sign up. Once this step has been completed,
-the playlists of the user will appear, and everyone in the group can send their desired track URI's to the main user. The URI's
-will be combined into a new playlist under the user's account, and any duplicates will simply move the duplicated tracks position."
+        android:text="Click on any of your available playlists, and then you and your friends can contribute. \n\nTo add a playlist,
+click on the plus '+\' icon, and then the app will take you to the combine URI page to create a new playlist."
         android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/SpotifyGreen"
@@ -61,8 +59,9 @@ will be combined into a new playlist under the user's account, and any duplicate
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.665" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
