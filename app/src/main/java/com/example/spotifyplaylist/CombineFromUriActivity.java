@@ -31,16 +31,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 public class CombineFromUriActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "e30929e731664b3f86b922d87115dc59";
     private static final String REDIRECT_URI = "http://localhost:8888/callback";
     private static final int REQUEST_CODE = 1337;
-    private String uri1;
-    private String uri2;
-    private String uri3;
-    private String uri4;
+    private Stack uriStack = new Stack();
+    //private String uri1;
+    //private String uri2;
+    //private String uri3;
+    //private String uri4;
     //UserService a = new UserService();
 
     private String endpoint ="https://api.spotify.com/v1/users/"+getUserid()+"/playlists";
@@ -56,18 +59,33 @@ public class CombineFromUriActivity extends AppCompatActivity {
         Log.d("UriMenu","Uri Help Menu CLicked");
 
     }
+    public void addURItostack(View v) {
+        if (!((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString().equalsIgnoreCase("")){
+            uriStack.push(((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString());
+            ((EditText) findViewById(R.id.editTextTextPersonName)).setText("");
+        }
+    }
+
+    public void removeURIfromstack(View v) {
+        if (!uriStack.isEmpty())
+            uriStack.pop();
+    }
+
+    public void clearStack(View v) {
+        while(!uriStack.isEmpty())
+            uriStack.pop();
+    }
+
     public void combineURI(View v){
         if(getToken()==null){
             Log.d("null token","the token is null cant combine");
             return;
         }
         else{
-            uri1 = ((EditText)findViewById(R.id.editTextTextPersonName)).getText().toString();
-            uri2 = ((EditText)findViewById(R.id.editTextTextPersonName4)).getText().toString();
-            uri3 = ((EditText)findViewById(R.id.editTextTextPersonName2)).getText().toString();
-            uri4 = ((EditText)findViewById(R.id.editTextTextPersonName3)).getText().toString();
+            //TODO
+            addURItostack(v);
             RequestQueue q = Volley.newRequestQueue(this);
-            JSONObject postData =new JSONObject();
+            JSONObject postData = new JSONObject();
             Log.d("asdsa",getToken());
             try{
                 postData.put("name","madeWithRequests");
