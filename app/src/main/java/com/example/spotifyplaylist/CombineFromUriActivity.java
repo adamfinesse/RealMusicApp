@@ -82,8 +82,7 @@ public class CombineFromUriActivity extends AppCompatActivity {
             return;
         }
         else{
-            //TODO
-            addURItostack(v);
+            //uriStack is a stack of all the strings entered into the method, not checked for validity just added as a string
             RequestQueue q = Volley.newRequestQueue(this);
             JSONObject postData = new JSONObject();
             Log.d("asdsa",getToken());
