@@ -51,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
     }
     private void authenticateSpotify() {
         AuthorizationRequest.Builder builder = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
-        builder.setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming", "app-remote-control", "user-read-recently-played", "user-library-modify", "user-read-email", "user-read-private"});
+        builder.setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming", "app-remote-control", "user-read-recently-played", "user-library-modify", "user-read-email", "playlist-modify-public", "user-read-private"});
         AuthorizationRequest request = builder.build();
         AuthorizationClient.openLoginActivity(this, REQUEST_CODE, request);
 
