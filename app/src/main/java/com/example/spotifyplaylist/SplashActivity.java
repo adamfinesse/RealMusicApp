@@ -53,7 +53,8 @@ public class SplashActivity extends AppCompatActivity {
         AuthorizationRequest.Builder builder = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
         builder.setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming", "app-remote-control", "user-read-recently-played", "user-library-modify", "user-read-email", "playlist-modify-public", "user-read-private"});
         AuthorizationRequest request = builder.build();
-        AuthorizationClient.openLoginActivity(this, REQUEST_CODE, request);
+        AuthorizationClient.openLoginActivity(this, REQUEST_CODE, request); //for some reason when spotify is on the device it returns a null auth token so we must use browser instead for now
+        //AuthorizationClient.openLoginInBrowser(this,request);
 
     }
     @Override

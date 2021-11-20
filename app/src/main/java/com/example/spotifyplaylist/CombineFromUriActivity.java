@@ -39,6 +39,7 @@ public class CombineFromUriActivity extends AppCompatActivity {
     private String playlistEndpoint = "https://api.spotify.com/v1/users/" + getUserid() + "/playlists";
     private String addToPlaylistEndpoint;
     private String getUserPlaylistsEndpoint = "https://api.spotify.com/v1/users/"+ getUserid()+"/playlists";
+    private String getPlaylistEndPoint;
     //private ArrayList<String> playlistArray = new ArrayList<>();
 
     @Override
@@ -56,9 +57,18 @@ public class CombineFromUriActivity extends AppCompatActivity {
     }
 
     public void addURItostack(View v) {
+        if (((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString().contains("playlist")) {
+            String viewString = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
+            String[] splitString=viewString.split(":");
+            Log.d("aaa",splitString[splitString.length-1]);
+            getUrisFromPlaylist(splitString[splitString.length-1]);
+            ((EditText) findViewById(R.id.editTextTextPersonName)).setText("");
+            // make a string array with the uris from the playlist (max
+        }
         if (!((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString().equalsIgnoreCase("")) {
             uriStack.push(((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString());
             ((EditText) findViewById(R.id.editTextTextPersonName)).setText("");
+
         }
     }
 
@@ -192,10 +202,7 @@ public class CombineFromUriActivity extends AppCompatActivity {
         else {
             //RequestQueue q = Volley.newRequestQueue(this);
             JSONObject postData = new JSONObject();
-            if (uriStack.peek().toString().contains("playlist")) {
-                getUrisFromPlaylist();
-                // make a string array with the uris from the playlist (max
-            }
+
 //            if(findViewById(R.id.button9).getVisibility()==View.VISIBLE){
 //                playlistID = getPlaylistID(playlistName);
 //                //Log.
@@ -220,7 +227,7 @@ public class CombineFromUriActivity extends AppCompatActivity {
 
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.d("Response", response.toString());
+                                longLog(response.toString());
                                 Toast.makeText(getApplicationContext(),"Success!!! Check your spotify!",Toast.LENGTH_LONG).show();
                             }
                         }, new Response.ErrorListener() {
@@ -257,12 +264,81 @@ public class CombineFromUriActivity extends AppCompatActivity {
                 q.add(jsonObjectRequest);
             }
         }
-    public void getUrisFromPlaylist(){
+    public void getUrisFromPlaylist(String playlistIDC){
+        if (getToken() == null) {
+            Log.d("null token", "the token is null cant combine");
+            Toast.makeText(getApplicationContext(),"Null token!, restart app to get a new auth token.",Toast.LENGTH_LONG).show();
+        } else {
+            getPlaylistEndPoint= "https://api.spotify.com/v1/playlists/"+playlistIDC+"/tracks"; //?fields=limit,offset&offset=0&limit=100
+            JSONObject postData = new JSONObject();
+//            try {
+//                postData.put("fields","limit");
+//                postData.put("limit","50");
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+            //postData.put("",);
+            final String requestBody = postData.toString();
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                    (Request.Method.GET, getPlaylistEndPoint, postData, new Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            longLog(response.toString());
+                            try {
+                                //JSONObject tracks = response.getJSONObject("tracks");
+                                JSONArray listOfTracks= response.getJSONArray("items"); //get json array of playlists
+                                Log.d("playlistasdasd",listOfTracks.length()+"");
+                                for(int i=0;i<listOfTracks.length();i++){
+                                    uriStack.add("spotify:track:"+listOfTracks.getJSONObject(i).getJSONObject("track").getString("id"));
+                                }
+                                //String trackID = listOfTracks.getJSONObject(0).getJSONObject("track").getString("id");
+
+                                //Log.d("responseURI",trackID);
+//                                for(int i=0;i<listOfTracks.length();i++){
+//                                    try {
+//                                        JSONObject track = listOfTracks.getJSONObject(i); //turn each index of the json array into a json object to interact with
+//                                        //listOfTracks.getJSONObject("track")
+//                                        uriStack.add(track.get("id").toString());
+//                                        Log.d("id",track.get("id").toString());
+//                                    } catch(JSONException e){
+//                                        e.printStackTrace();
+//                                    }
+//
+//                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // TODO: Handle error
+
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("Authorization", "Bearer " + getToken());
+                    params.put("Content-Type", "application/json");
+
+                    return params;
+                }
+            };
+
+            // Access the RequestQueue through your singleton class.
+
+            q.add(jsonObjectRequest);
+
+        }
 
     }
     public String getPlaylistID(String PlaylistName){
         if (getToken() == null) {
             Log.d("null token", "the token is null cant combine");
+            Toast.makeText(getApplicationContext(),"Null token!, restart app to get a new auth token.",Toast.LENGTH_LONG).show();
         } else {
             JSONObject postData = new JSONObject();
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -279,7 +355,8 @@ public class CombineFromUriActivity extends AppCompatActivity {
                                         if (playlist.get("name").toString().equalsIgnoreCase(playlistName)) {
                                             playlistID=playlist.get("id").toString();
                                             break;
-                                        }} catch(JSONException e){
+                                        }
+                                    } catch(JSONException e){
                                             e.printStackTrace();
                                         }
 
@@ -313,5 +390,11 @@ public class CombineFromUriActivity extends AppCompatActivity {
         }
         return playlistID;
     }
-
+    public static void longLog(String str) {
+        if (str.length() > 4000) {
+            Log.d("longlogResponse", str.substring(0, 4000));
+            longLog(str.substring(4000));
+        } else
+            Log.d("longlogResponse", str);
+    }
 }

@@ -54,7 +54,7 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Link = https://open.spotify.com/track/6j0teRL3WdExzqmy334sh5?si=a6cb3da7767a4249 \n\n URI from link = spotify:track:6j0teRL3WdExzqmy334sh5?si=a6cb3da7767a4249 \n \n So the fomat is spotify:firstthingafterfirst/:stringaftersecond/ \n \n If you want more information about URIs you can find them on spotify documentation."
+        android:text="Link = https://open.spotify.com/track/6j0teRL3WdExzqmy334sh5?si=a6cb3da7767a4249 \n\n URI from link = spotify:track:6j0teRL3WdExzqmy334sh5 \n \n So the fomat is spotify:firstthingafterfirst/:stringaftersecond before '?'/ \n \n If you want more information about URIs you can find them on spotify documentation."
         android:textColor="@color/SpotifyGreen"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
