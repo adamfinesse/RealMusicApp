@@ -9,6 +9,7 @@
 
     <TextView
         android:id="@+id/textView1"
+        android:fontFamily="@font/gotham_medium_regular"
         android:layout_width="194dp"
         android:layout_height="49dp"
         android:justificationMode="none"
@@ -28,6 +29,7 @@
 
     <TextView
         android:id="@+id/textView2"
+        android:fontFamily="@font/gotham_medium_regular"
         android:layout_width="280dp"
         android:layout_height="59dp"
         android:layout_marginTop="49dp"
@@ -48,6 +50,7 @@
 
     <TextView
         android:id="@+id/textView3"
+        android:fontFamily="@font/gotham_medium_regular"
         android:layout_width="292dp"
         android:layout_height="402dp"
         android:text="Click on any of your available playlists, and then you and your friends can contribute. \n\nTo add a playlist,
