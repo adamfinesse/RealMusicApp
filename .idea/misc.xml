@@ -21,14 +21,16 @@
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_playlist_view_help.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_playview.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_success.xml" value="0.2210144927536232" />
+        <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/font/font_family.xml" value="0.459375" />
         <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/layout/activity_combine_from_uri.xml" value="0.33" />
         <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/layout/activity_help.xml" value="0.33" />
         <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/layout/activity_play_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/layout/activity_play_view.xml" value="0.33" />
         <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/layout/activity_playlist_view_help.xml" value="0.33" />
-        <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/layout/activity_splash.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/layout/activity_splash.xml" value="0.33" />
         <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/layout/activity_success.xml" value="0.33" />
         <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/layout/activity_uri_help.xml" value="0.33" />
+        <entry key="..\:/Users/nfink/Documents/RealMusicApp/app/src/main/res/layout/merge_success.xml" value="0.33" />
       </map>
     </option>
   </component>

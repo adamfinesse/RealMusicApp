@@ -15,7 +15,7 @@ import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
 
 public class SplashActivity extends AppCompatActivity {
-    private static final String CLIENT_ID = "e30929e731664b3f86b922d87115dc59";
+    private static final String CLIENT_ID = "e76813a837234daca9626a030fb5cc9c";
     private static final String REDIRECT_URI = "http://localhost:8888/callback";
     //private static final String REDIRECT_URI ="";
     private static final int REQUEST_CODE = 1337;

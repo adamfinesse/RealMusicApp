@@ -22,4 +22,6 @@
     <string name="uri_help">uri help</string>
     <string name="remove_last">remove last</string>
     <string name="combine_from_uri_n_or_url">Combine from URI\n or URL</string>
+    <string name="Return">Button</string>
+    <string name="textview">TextView</string>
 </resources>
