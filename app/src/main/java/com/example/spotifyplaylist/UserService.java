@@ -2,6 +2,8 @@ package com.example.spotifyplaylist;
 
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -34,6 +36,7 @@ public class UserService {
         }, error -> get(() -> {
 
         })) {
+            @NonNull
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();

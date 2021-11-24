@@ -4,15 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_drawable">
+    android:background="@drawable/gradient_drawable"
+    tools:ignore="ExtraText"><![CDATA[
     tools:context=".HelpActivity">
+
+    ]]>
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="194dp"
         android:layout_height="49dp"
         android:justificationMode="none"
-        android:text="Help Menu"
+        android:text="@string/help_menu"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/SpotifyGreen"
@@ -24,7 +27,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.397" />
+        app:layout_constraintVertical_bias="0.324" />
 
     <TextView
         android:id="@+id/textView2"
@@ -32,7 +35,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="49dp"
         android:layout_marginBottom="402dp"
-        android:text="How to use: "
+        android:text="@string/how_to_use"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/SpotifyGreen"
@@ -44,16 +47,16 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView1"
-        app:layout_constraintVertical_bias="0.848" />
+        app:layout_constraintVertical_bias="0.091" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="292dp"
-        android:layout_height="402dp"
-        android:text="This app is intended to help groups of people make playlists together through spotify.
-When the app is started, the user is prompted to enter their spotify credentials or sign up. Once this step has been completed,
-the playlists of the user will appear, and everyone in the group can send their desired track URI's to the main user. The URI's
-will be combined into a new playlist under the user's account, and any duplicates will simply move the duplicated tracks position."
+        android:layout_width="283dp"
+        android:layout_height="509dp"
+        android:text=" This app is intended to help groups of people make playlists together through spotify.\n\n
+When the app is started, the user is prompted to enter their spotify credentials or sign up.\n\n
+Once this step has been completed, the playlists of the user will appear, and everyone in the group can send their desired playlist URI or URL to the main user.\n\n
+The URIs and URLs will be combined into a new playlist under the user's account, and any duplicates will simply move the duplicated tracks position."
         android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/SpotifyGreen"
@@ -61,8 +64,9 @@ will be combined into a new playlist under the user's account, and any duplicate
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.733"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
