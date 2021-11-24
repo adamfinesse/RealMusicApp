@@ -50,12 +50,12 @@
 
     <TextView
         android:id="@+id/textView3"
+        android:layout_width="307dp"
+        android:layout_height="276dp"
         android:fontFamily="@font/gotham_medium_regular"
-        android:layout_width="292dp"
-        android:layout_height="402dp"
         android:text="Click on any of your available playlists, and then you and your friends can contribute. \n\nTo add a playlist,
 click on the plus '+\' icon, and then the app will take you to the combine URI page to create a new playlist."
-        android:textAlignment="textStart"
+        android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/SpotifyGreen"
         android:textFontWeight="20"
