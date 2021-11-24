@@ -14,4 +14,12 @@
     <string name="com_spotify_sdk_redirect_host">"localhost:8888"</string>
     <string name="help_menu">Help Menu</string>
     <string name="how_to_use">How to use:</string>
+    <string name="add_link">add link</string>
+    <string name="clear_list">clear list</string>
+    <string name="combine_from_uri">Combine From URI</string>
+    <string name="combine">COMBINE!</string>
+    <string name="enter_the_uris_you_want_to_combine">Enter the uris you want to combine.</string>
+    <string name="uri_help">uri help</string>
+    <string name="remove_last">remove last</string>
+    <string name="combine_from_uri_n_or_url">Combine from URI\n or URL</string>
 </resources>

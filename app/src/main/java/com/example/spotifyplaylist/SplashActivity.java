@@ -81,7 +81,7 @@ public class SplashActivity extends AppCompatActivity {
                 case ERROR:
                     // Handle error response
                     String teste = response.getAccessToken();
-                    Log.d("STARTING", "GOT AUTH TOKEN"+teste);
+                    Log.d("STARTING", "GOT AUTH TOKEN "+teste);
 
                     break;
 
@@ -97,7 +97,7 @@ public class SplashActivity extends AppCompatActivity {
             User user = userService.getUser();
             editor = getSharedPreferences("SPOTIFY", 0).edit();
             editor.putString("userid", user.id);
-            userid=user.id;
+            //userid=user.id;
             Log.d("STARTING", "GOT USER INFORMATION");
             // We use commit instead of apply because we need the information stored immediately
             editor.commit();
