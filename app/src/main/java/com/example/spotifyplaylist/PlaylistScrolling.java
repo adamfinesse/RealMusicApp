@@ -19,10 +19,10 @@ public class PlaylistScrolling extends AppCompatActivity {
         com.example.spotifyplaylist.databinding.ActivityScrollingPlaylistBinding binding = ActivityScrollingPlaylistBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Toolbar toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
-        toolBarLayout.setTitle(getTitle());
+        //Toolbar toolbar = binding.toolbar; ?
+        //setSupportActionBar(toolbar);
+        //CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
+        //toolBarLayout.setTitle(getTitle());
 
         FloatingActionButton fab = binding.fab;
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

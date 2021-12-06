@@ -209,11 +209,9 @@ public class CombineFromUriActivity extends AppCompatActivity {
 //            }
                 try {
                     JSONArray uriJsonArray = new JSONArray();
-                    int c=0;
                     while(!uriStack.isEmpty()){//maybe move to before/move uristack.peek inside here for better logic
                         uriJsonArray.put(uriStack.peek().toString());
                         uriStack.pop();
-                        c++;
                     }
                     postData.put("uris", uriJsonArray);
                     postData.put("position",null);
@@ -271,14 +269,6 @@ public class CombineFromUriActivity extends AppCompatActivity {
         } else {
             getPlaylistEndPoint= "https://api.spotify.com/v1/playlists/"+playlistIDC+"/tracks"; //?fields=limit,offset&offset=0&limit=100
             JSONObject postData = new JSONObject();
-//            try {
-//                postData.put("fields","limit");
-//                postData.put("limit","50");
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-            //postData.put("",);
-            final String requestBody = postData.toString();
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                     (Request.Method.GET, getPlaylistEndPoint, postData, new Response.Listener<JSONObject>() {
 
@@ -286,26 +276,11 @@ public class CombineFromUriActivity extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             longLog(response.toString());
                             try {
-                                //JSONObject tracks = response.getJSONObject("tracks");
-                                JSONArray listOfTracks= response.getJSONArray("items"); //get json array of playlists
-                                Log.d("playlistasdasd",listOfTracks.length()+"");
+                                JSONArray listOfTracks= response.getJSONArray("items"); //get json array of tracks
+                                Log.d("playlistLength",listOfTracks.length()+"");// the max length in 1 request is 100
                                 for(int i=0;i<listOfTracks.length();i++){
                                     uriStack.add("spotify:track:"+listOfTracks.getJSONObject(i).getJSONObject("track").getString("id"));
                                 }
-                                //String trackID = listOfTracks.getJSONObject(0).getJSONObject("track").getString("id");
-
-                                //Log.d("responseURI",trackID);
-//                                for(int i=0;i<listOfTracks.length();i++){
-//                                    try {
-//                                        JSONObject track = listOfTracks.getJSONObject(i); //turn each index of the json array into a json object to interact with
-//                                        //listOfTracks.getJSONObject("track")
-//                                        uriStack.add(track.get("id").toString());
-//                                        Log.d("id",track.get("id").toString());
-//                                    } catch(JSONException e){
-//                                        e.printStackTrace();
-//                                    }
-//
-//                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -390,6 +365,7 @@ public class CombineFromUriActivity extends AppCompatActivity {
         }
         return playlistID;
     }
+    //use longLog to print out a full response as Log.d cuts the response short when printing.
     public static void longLog(String str) {
         if (str.length() > 4000) {
             Log.d("longlogResponse", str.substring(0, 4000));
