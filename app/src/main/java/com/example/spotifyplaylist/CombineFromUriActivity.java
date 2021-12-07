@@ -91,6 +91,9 @@ public class CombineFromUriActivity extends AppCompatActivity {
         }
         //onStart();
     }
+    public void removeURIfromPlaylist(View v){
+
+    }
 
     public void toggleVisPlaylist(View v) {
         EditText playlistText = ((EditText) findViewById(R.id.editTextTextPersonName2));
@@ -264,6 +267,8 @@ public class CombineFromUriActivity extends AppCompatActivity {
             }
         }
     public void requestDeleteTracksFromPlaylist(){
+        setContentView(R.layout.activity_delete_tracks_from_playlist);
+        setTitle("Delete Tracks From Playlist");
         if (getToken() == null) {
             Log.d("null token", "the token is null cant combine");
             Toast.makeText(getApplicationContext(),"Null token!, restart app to get a new auth token.",Toast.LENGTH_LONG).show();
@@ -339,6 +344,11 @@ public class CombineFromUriActivity extends AppCompatActivity {
             // Access the RequestQueue through your singleton class.
             q.add(jsonObjectRequest);
         }
+    }
+    public void deleteHelpMenu(View v) {
+        Intent i = new Intent(this, DeleteHelpActivity.class);
+        startActivity(i);
+
     }
     public void getUrisFromPlaylist(String playlistIDC){
         if (getToken() == null) {

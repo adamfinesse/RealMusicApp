@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_combine_from_uri.xml" value="0.1" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_delete_tracks_from_playlist.xml" value="0.1" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_help.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_help2.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_help_2.xml" value="0.11141304347826086" />
@@ -14,9 +15,19 @@
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_scrolling_playlist.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_splash.xml" value="0.11322188449848024" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_success.xml" value="0.2210144927536232" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_uri_help.xml" value="0.1" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/content_scrolling.xml" value="0.1" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/merge_success.xml" value="0.1" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
+  </component>
 </project>
