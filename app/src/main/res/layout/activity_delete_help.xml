@@ -8,4 +8,15 @@
     android:background="@drawable/gradient_drawable">
 
 
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This Delete function is used to find \nand delete a track from the designated playlist \nby using the tracks URI. \nSimply enter in a Track's URI or URL, and
+the program will eliminate the song from the targeted Playlist."
+        android:textAlignment="center"
+        android:textColor="@color/SpotifyGreen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

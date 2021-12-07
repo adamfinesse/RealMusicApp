@@ -25,7 +25,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 public class CombineFromUriActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "e30929e731664b3f86b922d87115dc59";
@@ -36,10 +36,10 @@ public class CombineFromUriActivity extends AppCompatActivity {
     private String playlistName = "madeWithRequests " + Integer.toString((int) (Math.random() * 10000));
     private String playlistID;
 
-    private String playlistEndpoint = "https://api.spotify.com/v1/users/" + getUserid() + "/playlists";
+    private final String playlistEndpoint = "https://api.spotify.com/v1/users/" + getUserid() + "/playlists";
     private String addToPlaylistEndpoint;
     private String removeFromPlaylistEndpoint;
-    private String getUserPlaylistsEndpoint = "https://api.spotify.com/v1/users/"+ getUserid()+"/playlists";
+    private final String getUserPlaylistsEndpoint = "https://api.spotify.com/v1/users/"+ getUserid()+"/playlists";
     private String getPlaylistEndPoint;
     //private ArrayList<String> playlistArray = new ArrayList<>();
 
@@ -54,7 +54,6 @@ public class CombineFromUriActivity extends AppCompatActivity {
     public void helpMenu(View v) {
         Intent i = new Intent(this, UriHelpActivity.class);
         startActivity(i);
-
     }
 
     public void addURItostack(View v) {
@@ -92,7 +91,9 @@ public class CombineFromUriActivity extends AppCompatActivity {
         //onStart();
     }
     public void removeURIfromPlaylist(View v){
-
+        if(((Button) findViewById(R.id.button11)).getVisibility() == View.VISIBLE){
+            requestDeleteTracksFromPlaylist();
+        }
     }
 
     public void toggleVisPlaylist(View v) {
