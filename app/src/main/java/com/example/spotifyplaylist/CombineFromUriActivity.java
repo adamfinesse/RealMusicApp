@@ -54,7 +54,6 @@ public class CombineFromUriActivity extends AppCompatActivity {
     public void helpMenu(View v) {
         Intent i = new Intent(this, UriHelpActivity.class);
         startActivity(i);
-
     }
 
     public void addURItostack(View v) {
@@ -92,7 +91,9 @@ public class CombineFromUriActivity extends AppCompatActivity {
         //onStart();
     }
     public void removeURIfromPlaylist(View v){
-
+        if(((Button) findViewById(R.id.button11)).getVisibility() == View.VISIBLE){
+            requestDeleteTracksFromPlaylist();
+        }
     }
 
     public void toggleVisPlaylist(View v) {
