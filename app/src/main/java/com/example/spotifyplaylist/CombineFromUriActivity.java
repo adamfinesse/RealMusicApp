@@ -38,6 +38,7 @@ public class CombineFromUriActivity extends AppCompatActivity {
 
     private String playlistEndpoint = "https://api.spotify.com/v1/users/" + getUserid() + "/playlists";
     private String addToPlaylistEndpoint;
+    private String removeFromPlaylistEndpoint;
     private String getUserPlaylistsEndpoint = "https://api.spotify.com/v1/users/"+ getUserid()+"/playlists";
     private String getPlaylistEndPoint;
     //private ArrayList<String> playlistArray = new ArrayList<>();
@@ -72,7 +73,7 @@ public class CombineFromUriActivity extends AppCompatActivity {
         }
     }
 
-    public void removeURIfromstack(View v) {
+    public void removeLastURIfromstack(View v) {
         if (!uriStack.isEmpty())
             uriStack.pop();
     }
@@ -262,6 +263,83 @@ public class CombineFromUriActivity extends AppCompatActivity {
                 q.add(jsonObjectRequest);
             }
         }
+    public void requestDeleteTracksFromPlaylist(){
+        if (getToken() == null) {
+            Log.d("null token", "the token is null cant combine");
+            Toast.makeText(getApplicationContext(),"Null token!, restart app to get a new auth token.",Toast.LENGTH_LONG).show();
+            return;
+        }else if(uriStack.isEmpty()){
+            Log.d("stack empty", "the stack has no uris, add some and try again");
+            Toast.makeText(getApplicationContext(),"the stack has no uris to delete, add some and try again",Toast.LENGTH_LONG).show();
+            return;
+        }
+        else {
+            //RequestQueue q = Volley.newRequestQueue(this);
+            JSONObject deleteData = new JSONObject();
+
+//            if(findViewById(R.id.button9).getVisibility()==View.VISIBLE){
+//                playlistID = getPlaylistID(playlistName);
+//                //Log.
+//            }
+            try {
+                JSONArray uriTopJsonArray = new JSONArray();
+                JSONArray uriOtherJsonArray = new JSONArray();
+                while(!uriStack.isEmpty()){//maybe move to before/move uristack.peek inside here for better logic
+                    if(uriStack.peek().toString().equals(deleteData.toString())){
+                        uriStack.pop();
+                    }
+                    uriOtherJsonArray.put(uriStack.peek().toString());
+                    uriStack.pop();
+                }
+                deleteData.put("uris", uriTopJsonArray);
+                deleteData.put("position",null);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            final String requestBody = deleteData.toString();
+            removeFromPlaylistEndpoint = "https://api.spotify.com/v1/playlists/"+playlistID+"/tracks";
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                    (Request.Method.DELETE, removeFromPlaylistEndpoint, deleteData, new Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            longLog(response.toString());
+                            Toast.makeText(getApplicationContext(),"Success!!! Check your spotify!",Toast.LENGTH_LONG).show();
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // TODO: Handle error
+
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("Authorization", "Bearer " + getToken());
+                    params.put("Content-Type", "application/json");
+
+                    return params;
+                }
+
+                @Override
+                public byte[] getBody() {
+                    try {
+                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s",
+                                requestBody, "utf-8");
+                        return null;
+                    }
+                }
+
+            };
+
+            // Access the RequestQueue through your singleton class.
+            q.add(jsonObjectRequest);
+        }
+    }
     public void getUrisFromPlaylist(String playlistIDC){
         if (getToken() == null) {
             Log.d("null token", "the token is null cant combine");

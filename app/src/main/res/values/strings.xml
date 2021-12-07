@@ -25,6 +25,7 @@
     <string name="Return">Button</string>
     <string name="textview">TextView</string>
     <string name="title_activity_playlist_scrolling">PlaylistScrolling</string>
+    <string name="remove_URI_from_Playlist">Remove URI from Playlist</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
