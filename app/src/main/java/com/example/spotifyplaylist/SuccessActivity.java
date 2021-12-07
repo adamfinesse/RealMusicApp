@@ -48,6 +48,10 @@ public class SuccessActivity extends AppCompatActivity {
         startActivity(i);
         Log.d("playView","view playlists button clicked");
     }
+    public void randomizeView(View v){
+        Intent i = new Intent(this,PlaylistRandomizerActivity.class);
+        startActivity(i);
+    }
     public void loginSpotify(View v){
         //onStart();
 //        final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)

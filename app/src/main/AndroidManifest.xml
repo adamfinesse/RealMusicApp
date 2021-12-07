@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpotifyPlaylist">
         <activity
+            android:name=".PlaylistRandomizerActivity"
+            android:exported="false" />
+        <activity
             android:name=".PlaylistScrolling"
             android:exported="false"
             android:label="@string/title_activity_playlist_scrolling"
