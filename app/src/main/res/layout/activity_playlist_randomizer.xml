@@ -27,6 +27,7 @@
         android:id="@+id/randomizeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="randomizePlaylist"
         android:text="Randomize!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,4 +65,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.401" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BEWARE! IF YOU TEST ON A PLAYLIST OF MORE\n THAN 100 SONGS IT WILL REMOVE THEM!\n If I fix ill remove this warning."
+        android:textColor="@color/SpotifyGreen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.627" />
 </androidx.constraintlayout.widget.ConstraintLayout>

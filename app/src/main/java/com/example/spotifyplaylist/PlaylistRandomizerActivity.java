@@ -23,7 +23,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,9 +39,11 @@ public class PlaylistRandomizerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist_randomizer);
+        setTitle("Combine From URI");
+        q = Volley.newRequestQueue(this);
     }
     public void randomizePlaylist(View v){
-        getUrisFromPlaylist(playlistID);
+        requestRandomizePlaylist();
     }
     public void getPlaylistId(View v){
         if (((EditText) findViewById(R.id.editTextTextPersonName3)).getText().toString().contains("playlist")) {
@@ -47,6 +51,7 @@ public class PlaylistRandomizerActivity extends AppCompatActivity {
             String[] splitString=viewString.split(":");
             playlistEndpoint = playlistEndpoint+splitString[splitString.length-1];
             playlistID=splitString[splitString.length-1];
+            getUrisFromPlaylist(playlistID);
             ((EditText) findViewById(R.id.editTextTextPersonName3)).setText("");
             // make a string array with the uris from the playlist (max 100)
         }
@@ -70,7 +75,6 @@ public class PlaylistRandomizerActivity extends AppCompatActivity {
                                 for(int i=0;i<listOfTracks.length();i++){
                                     playlistArray.add("spotify:track:"+listOfTracks.getJSONObject(i).getJSONObject("track").getString("id"));
                                 }
-                                requestRandomizePlaylist();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -105,6 +109,55 @@ public class PlaylistRandomizerActivity extends AppCompatActivity {
             Log.d("null token", "the token is null cant combine");
             Toast.makeText(getApplicationContext(),"Null token!, restart app to get a new auth token.",Toast.LENGTH_LONG).show();
         } else {
+
+            JSONObject postData = new JSONObject();
+            Collections.shuffle(playlistArray);
+            JSONArray jsonPlaylistArr = new JSONArray(playlistArray);
+            try {
+                postData.put("uris", jsonPlaylistArr);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            final String requestBody = postData.toString();
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                    (Request.Method.PUT, playlistEndpoint+"/tracks", postData, new Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            longLog(response.toString());
+
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // TODO: Handle error
+
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("Authorization", "Bearer " + getToken());
+                    params.put("Content-Type", "application/json");
+
+                    return params;
+                }
+                @Override
+                public byte[] getBody() {
+                    try {
+                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s",
+                                requestBody, "utf-8");
+                        return null;
+                    }
+                }
+            };
+
+            // Access the RequestQueue through your singleton class.
+
+            q.add(jsonObjectRequest);
 
         }
     }
