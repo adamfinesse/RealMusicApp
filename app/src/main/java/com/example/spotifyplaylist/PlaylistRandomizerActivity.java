@@ -39,7 +39,7 @@ public class PlaylistRandomizerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist_randomizer);
-        setTitle("Combine From URI");
+        setTitle("Randomize Playlist");
         q = Volley.newRequestQueue(this);
     }
     public void randomizePlaylist(View v){
