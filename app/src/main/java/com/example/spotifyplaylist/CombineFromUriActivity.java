@@ -109,11 +109,6 @@ public class CombineFromUriActivity extends AppCompatActivity {
         ((EditText) findViewById(R.id.editTextTextPersonName2)).setText("");
         playlistID = getPlaylistID(playlistName);
     }
-    public void deleteAct(View v) {
-        Intent i = new Intent(this, DeleteActivity.class);
-        startActivity(i);
-
-    }
 
     //    @Override
 //    protected void onStop() {

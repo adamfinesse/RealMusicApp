@@ -48,8 +48,8 @@ public class DeleteActivity extends AppCompatActivity{
         return playlistID;
     }
     public void getPlaylistId(View v){
-        if (((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString().contains("playlist")) {
-            String viewString = ((EditText) findViewById(R.id.editTextTextPersonName)).getText().toString();
+        if (((EditText) findViewById(R.id.editT)).getText().toString().contains("playlist")) {
+            String viewString = ((EditText) findViewById(R.id.editT)).getText().toString();
             String[] splitString=viewString.split(":");
             playlistEndpoint = playlistEndpoint+splitString[splitString.length-1];
             playlistID=splitString[splitString.length-1];
@@ -78,7 +78,7 @@ public class DeleteActivity extends AppCompatActivity{
                                 JSONArray listOfTracks= response.getJSONArray("items"); //get json array of tracks
                                 Log.d("playlistLength",listOfTracks.length()+"");// the max length in 1 request is 100
                                 for(int i=0;i<listOfTracks.length();i++){
-                                    playlistArray.add("spotify:track:"+listOfTracks.getJSONObject(i).getJSONObject("track").getString("id"));
+                                    playlistArray.add(listOfTracks.getJSONObject(i).getJSONObject("track").getString("id"));
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -113,10 +113,8 @@ public class DeleteActivity extends AppCompatActivity{
     public void deleteHelpMenu(View v) {
         Intent i = new Intent(this, DeleteHelpActivity.class);
         startActivity(i);
-
     }
     public void delete2(View v) {
-        getPlaylistId(findViewById(R.id.editTextTextPersonName));
         Intent i = new Intent(this, Delete2.class);
         startActivity(i);
 

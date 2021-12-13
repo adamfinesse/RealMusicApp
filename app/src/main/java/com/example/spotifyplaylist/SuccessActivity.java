@@ -52,6 +52,10 @@ public class SuccessActivity extends AppCompatActivity {
         Intent i = new Intent(this,PlaylistRandomizerActivity.class);
         startActivity(i);
     }
+    public void deleteView(View v) {
+        Intent i = new Intent(this, DeleteActivity.class);
+        startActivity(i);
+    }
     public void loginSpotify(View v){
         //onStart();
 //        final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)

@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
@@ -45,7 +46,6 @@ public class Delete2 extends DeleteActivity{
         if(((EditText) findViewById(R.id.editTextTextPersonName12)).getText().toString().contains("track")) {
             String viewString = ((EditText) findViewById(R.id.editTextTextPersonName12)).getText().toString();
             String[] splitString = viewString.split(":");
-            trackEndpoint = trackEndpoint+splitString[splitString.length-1];
             trackID = splitString[splitString.length-1];
             tracksToDelete.add(trackID);
         }
@@ -59,31 +59,33 @@ public class Delete2 extends DeleteActivity{
             Toast.makeText(getApplicationContext(),"Null token!, restart app to get a new auth token.",Toast.LENGTH_LONG).show();
             return;
         }else if(playlistArray.isEmpty()){
-            Log.d("stack empty", "the stack has no uris, add some and try again");
+            Log.d("list empty", "the list has no uris, add some and try again");
             Toast.makeText(getApplicationContext(),"the stack has no uris to delete, add some and try again",Toast.LENGTH_LONG).show();
             return;
         }
         else {
             //RequestQueue q = Volley.newRequestQueue(this);
-            JSONObject postData = new JSONObject();
+            JSONArray postData = new JSONArray();
             for(int i = 0; i <playlistArray.size(); i++){
-                if(playlistArray.get(i).contains(tracksToDelete.get(i))){
-                    playlistArray.remove(i);
+                if(playlistArray.contains(tracksToDelete.get(i))){
+                    playlistArray.remove(playlistArray.indexOf(tracksToDelete.get(i)));
                 }
             }
             try {
                 JSONArray uriJsonArray = new JSONArray(playlistArray);
-                postData.put("uris", uriJsonArray);
+                for (int i = 0; i < playlistArray.size(); i++){
+                    postData.getJSONObject(i).put("uris", uriJsonArray);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             final String requestBody = postData.toString();
             removeFromPlaylistEndpoint = "https://api.spotify.com/v1/playlists/"+playlistID+"/tracks";
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                    (Request.Method.DELETE, removeFromPlaylistEndpoint, postData, new Response.Listener<JSONObject>() {
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
+                    (Request.Method.DELETE, removeFromPlaylistEndpoint, postData, new Response.Listener<JSONArray>() {
 
                         @Override
-                        public void onResponse(JSONObject response) {
+                        public void onResponse(JSONArray response) {
                             longLog(response.toString());
                             Toast.makeText(getApplicationContext(),"Success!!! Check your spotify!",Toast.LENGTH_LONG).show();
                         }
@@ -91,7 +93,7 @@ public class Delete2 extends DeleteActivity{
 
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            // TODO: Handle error
+                             longLog("ERROR");
 
                         }
                     }) {
@@ -118,7 +120,7 @@ public class Delete2 extends DeleteActivity{
             };
 
             // Access the RequestQueue through your singleton class.
-            q.add(jsonObjectRequest);
+            q.add(jsonArrayRequest);
         }
     }
 }
