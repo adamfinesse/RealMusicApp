@@ -3,33 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Siras/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_combine_from_uri.xml" value="0.264" />
-        <entry key="..\:/Users/Siras/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_help.xml" value="0.10833333333333334" />
-        <entry key="..\:/Users/Siras/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_playlist_randomizer.xml" value="0.264" />
-        <entry key="..\:/Users/Siras/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_splash.xml" value="0.10833333333333334" />
-        <entry key="..\:/Users/Siras/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_success.xml" value="0.264" />
-        <entry key="..\:/Users/Siras/StudioProjects/RealMusicApp/app/src/main/res/layout/content_scrolling.xml" value="0.2" />
-        <entry key="..\:/Users/adam/Documents/RealMusicApp/app/src/main/res/layout/activity_combine_from_uri.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/adam/Documents/RealMusicApp/app/src/main/res/layout/activity_help.xml" value="0.1" />
-        <entry key="..\:/Users/adam/Documents/RealMusicApp/app/src/main/res/layout/activity_login.xml" value="0.5" />
-        <entry key="..\:/Users/adam/Documents/RealMusicApp/app/src/main/res/layout/activity_play_view.xml" value="0.1" />
-        <entry key="..\:/Users/adam/Documents/RealMusicApp/app/src/main/res/layout/activity_play_view2.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/adam/Documents/RealMusicApp/app/src/main/res/layout/activity_playlist_view_help.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/adam/Documents/RealMusicApp/app/src/main/res/layout/activity_playlist_view_help2.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/adam/Documents/RealMusicApp/app/src/main/res/layout/activity_splash.xml" value="0.24895833333333334" />
-        <entry key="..\:/Users/adam/Documents/RealMusicApp/app/src/main/res/layout/activity_success.xml" value="0.2234375" />
-        <entry key="..\:/Users/adam/Documents/RealMusicApp/app/src/main/res/layout/activity_uri_help.xml" value="0.33" />
-        <entry key="..\:/Users/adam/Documents/RealMusicApp/app/src/main/res/layout/activity_uri_help2.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_combine_from_uri.xml" value="0.264" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_delete_help.xml" value="0.4" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_delete_tracks_from_playlist.xml" value="0.2" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_help.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_help2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_help_2.xml" value="0.11141304347826086" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_play_view.xml" value="0.1" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_playlist_randomizer.xml" value="0.24048913043478262" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_playlist_view_help.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_playview.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_remove_from_entered_playlist.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_scrolling_playlist.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_splash.xml" value="0.11322188449848024" />
         <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_success.xml" value="0.2210144927536232" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/activity_uri_help.xml" value="0.1" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/content_scrolling.xml" value="0.1" />
+        <entry key="..\:/Users/jzdub/StudioProjects/RealMusicApp/app/src/main/res/layout/merge_success.xml" value="0.1" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
+  </component>
 </project>
