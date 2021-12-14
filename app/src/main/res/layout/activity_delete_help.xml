@@ -12,12 +12,29 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter the URI or URL of the \nplaylist you wish to delete tracks from."
+        android:text="Enter the URI of the \nplaylist you wish to delete tracks from. \nThen, select the Save Playlist button.\nThis will allow you to delete tracks from this playlist in the future."
         android:textAlignment="center"
         android:textColor="@color/SpotifyGreen"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.378" />
+        app:layout_constraintVertical_bias="0.056" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter the URI of the \ntrack you wish to delete from the \nsaved playlist.\n Then click on add track to list, \n which will then enable multiple tracks to be deleted \nfrom the selected playlist. Finally, press the Delete Track(s) button to remove the desired tracks from the inputted playlist"
+        android:textAlignment="center"
+        android:textColor="@color/SpotifyGreen"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.464" />
 </androidx.constraintlayout.widget.ConstraintLayout>

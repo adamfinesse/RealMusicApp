@@ -43,7 +43,7 @@
             android:exported="true" />
         <activity android:name=".DeleteActivity"
             android:exported="true" />
-        <activity android:name=".Delete2"
+        <activity android:name=".DeleteHelpActivity"
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
