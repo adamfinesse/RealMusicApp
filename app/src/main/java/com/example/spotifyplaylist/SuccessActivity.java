@@ -4,9 +4,11 @@ import static com.spotify.sdk.android.auth.AccountsQueryParameters.CLIENT_ID;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,12 +27,17 @@ public class SuccessActivity extends AppCompatActivity {
     private Intent a;
     private SpotifyAppRemote mSpotifyAppRemote;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
         getSupportActionBar().hide();
         setTitle("Home");
+
+
     }
     public void helpMenu(View v){
         //Button a = (Button)v;
@@ -61,8 +68,9 @@ public class SuccessActivity extends AppCompatActivity {
 
     public void settingsMenu(View v) {
         Intent i = new Intent(this, SettingsActivity.class);
-        startActivity(i);
-        Log.d("settingsMenu","settings menu button clicked");
+            startActivity(i);
+            Log.d("settingsMenu", "settings menu button clicked");
+
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.spotifyplaylist;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 //import androidx.appcompat.app.AppCompatDelegate;
 
 import android.annotation.SuppressLint;
@@ -32,6 +34,9 @@ public class SplashActivity extends AppCompatActivity {
 
     private RequestQueue queue;
 
+    SwitchCompat nightModeSwitch;
+
+    // Getter/Setters
     public static String getUserid() {
         return userid;
     }
@@ -44,8 +49,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
         Objects.requireNonNull(getSupportActionBar()).hide();
+
+
+
 
         authenticateSpotify();
 
