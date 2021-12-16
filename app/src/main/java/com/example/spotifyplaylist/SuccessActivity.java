@@ -3,6 +3,7 @@ package com.example.spotifyplaylist;
 import static com.spotify.sdk.android.auth.AccountsQueryParameters.CLIENT_ID;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,6 +29,7 @@ public class SuccessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
+        getSupportActionBar().hide();
         setTitle("Home");
     }
     public void helpMenu(View v){
@@ -56,7 +58,16 @@ public class SuccessActivity extends AppCompatActivity {
         Intent i = new Intent(this, DeleteActivity.class);
         startActivity(i);
     }
-    public void loginSpotify(View v){
+
+    public void settingsMenu(View v) {
+        Intent i = new Intent(this, SettingsActivity.class);
+        startActivity(i);
+        Log.d("settingsMenu","settings menu button clicked");
+    }
+
+
+
+    //public void loginSpotify(View v){
         //onStart();
 //        final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
 //                .setScopes(new String[]{"user-read-private", "playlist-read", "playlist-read-private", "streaming","app-remote-control"})
@@ -68,7 +79,7 @@ public class SuccessActivity extends AppCompatActivity {
         //onActivityResult(REQUEST_CODE, Activity.RESULT_OK,a);
 
 
-}
+//}
 //    @Override
 //    protected void onStart() {
 //        super.onStart();

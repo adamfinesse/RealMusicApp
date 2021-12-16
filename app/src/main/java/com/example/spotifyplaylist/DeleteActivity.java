@@ -45,6 +45,7 @@ public class DeleteActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_tracks_from_playlist);
+        getSupportActionBar().hide();
         setTitle("Delete Track(s)");
         q = Volley.newRequestQueue(this);
     }

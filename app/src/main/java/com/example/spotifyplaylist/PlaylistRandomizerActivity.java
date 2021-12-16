@@ -39,6 +39,7 @@ public class PlaylistRandomizerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist_randomizer);
+        getSupportActionBar().hide();
         setTitle("Randomize Playlist");
         q = Volley.newRequestQueue(this);
     }

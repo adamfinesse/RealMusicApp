@@ -1,7 +1,9 @@
 package com.example.spotifyplaylist;
 
 import androidx.appcompat.app.AppCompatActivity;
+//import androidx.appcompat.app.AppCompatDelegate;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,19 +11,22 @@ import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.spotify.android.appremote.api.SpotifyAppRemote;
+//import com.spotify.android.appremote.api.SpotifyAppRemote;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
 
+import java.util.Objects;
+
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "e30929e731664b3f86b922d87115dc59";
     private static final String REDIRECT_URI = "http://localhost:8888/callback";
     //private static final String REDIRECT_URI ="";
     private static final int REQUEST_CODE = 1337;
     private SharedPreferences.Editor editor;
-    private SharedPreferences msharedPreferences;
-    private SpotifyAppRemote mSpotifyAppRemote;
+    private SharedPreferences sharedPreferences;
+    //private SpotifyAppRemote mSpotifyAppRemote;
     private static String token;
     private static String userid;
 
@@ -39,14 +44,12 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        //requestFeature(Window.FEATURE_NO_TITLE);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
 
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         authenticateSpotify();
 
-        msharedPreferences = this.getSharedPreferences("SPOTIFY", 0);
+        sharedPreferences = this.getSharedPreferences("SPOTIFY", 0);
         queue = Volley.newRequestQueue(this);
     }
     private void authenticateSpotify() {
@@ -92,7 +95,7 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
     private void waitForUserInfo() {
-        UserService userService = new UserService(queue, msharedPreferences);
+        UserService userService = new UserService(queue, sharedPreferences);
         userService.get(() -> {
             User user = userService.getUser();
             editor = getSharedPreferences("SPOTIFY", 0).edit();
@@ -117,7 +120,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void setToken(String token) {
-        this.token = token;
+        SplashActivity.token = token;
     }
 //    private Uri getRedirectUri(){
 //        return new Uri.Builder()

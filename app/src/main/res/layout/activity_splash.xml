@@ -15,16 +15,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/spotify_logo_with_text" />
+        app:srcCompat="@drawable/spotify_logo_with_text"
+        android:contentDescription="@string/spotify_logo" />
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="356dp"
         android:layout_height="138dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="117dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/topnight_logo" />
+        app:layout_constraintVertical_bias="0.197"
+        app:srcCompat="@drawable/topnight_logo"
+        android:contentDescription="@string/topnight_logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

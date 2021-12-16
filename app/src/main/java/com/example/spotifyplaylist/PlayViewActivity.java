@@ -13,6 +13,7 @@ public class PlayViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_view);
+        getSupportActionBar().hide();
     }
     public void helpMenu2(View v){
         //Button a = (Button)v;

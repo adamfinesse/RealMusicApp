@@ -16,7 +16,7 @@
     <color name ="SpotifyOnyx">#FF444444</color>
     <color name ="SpotifySilver">#FFB3B3B3</color>
     <color name ="SpotifyWhite">#FFFFFFFF</color>
-    <color name ="BackgroundStart">#191414</color>
-    <color name ="BackgroundEnd">#DF191414</color>
+    <color name ="BackgroundStart">#FFFFFF</color>
+    <color name ="BackgroundEnd">#B3B3B3</color>
 
 </resources>

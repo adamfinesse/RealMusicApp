@@ -43,6 +43,8 @@
             android:exported="true" />
         <activity android:name=".DeleteActivity"
             android:exported="true" />
+        <activity android:name=".SettingsActivity"
+            android:exported="true" />
         <activity android:name=".DeleteHelpActivity"
             android:exported="true" />
         <activity

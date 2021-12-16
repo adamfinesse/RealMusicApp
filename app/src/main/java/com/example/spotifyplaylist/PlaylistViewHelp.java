@@ -10,5 +10,6 @@ public class PlaylistViewHelp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist_view_help);
+        getSupportActionBar().hide();
     }
 }
